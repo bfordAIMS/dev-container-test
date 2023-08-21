@@ -1,0 +1,86 @@
+{
+  "name": "R dev (latest)",
+
+
+  // =====================================================================
+  //                           BUILD DOCKER IMAGE 
+  // =====================================================================
+  // Dockerfile defines image to build
+  "build": {"dockerfile": "Dockerfile"},
+
+  // =====================================================================
+  //                            DEFINE MOUNTS
+  // =====================================================================
+  // Connect local and virtual filesystems with mounts
+  // "mounts": ["source=/path/to/source, target=/path/to/target"],
+
+
+  // =====================================================================
+  //                              FEATURES
+  // =====================================================================
+  // Predefined devcontainer features allow easy setup of features
+  "features": {
+    // -------------------------------------------------------------------
+    //                         ROCKER FEATURES
+    // -------------------------------------------------------------------
+    // Rocker provides a set of devcontainer features for R development: 
+    // https://github.com/rocker-org/devcontainer-features/tree/main
+    
+    // R (latest version)
+    "ghcr.io/rocker-org/devcontainer-features/r-apt:latest": {
+      "installRadian": true      // installs radian console with pip
+    },
+
+    // Setup renv cache for R packages using a docker volume
+    "ghcr.io/rocker-org/devcontainer-features/renv-cache:latest": {},
+
+    // R packages with pak::pak()
+    // In the current setup, I install some 'development-related' packages here, and 'project-related' packages from the dockerfile
+    // "ghcr.io/rocker-org/devcontainer-features/r-packages:latest": {
+    //   "packages": "rlang, languageserver, remotes, cli, httpgd, rmarkdown",
+    //   "installSystemRequirements": true
+    // },
+
+    // Install linux packages with apt
+    "ghcr.io/rocker-org/devcontainer-features/apt-packages:latest": {
+      "packages": "curl"
+    },
+
+    // Install pandoc
+    "ghcr.io/rocker-org/devcontainer-features/pandoc:latest": {},
+
+    // Install quarto
+    "ghcr.io/rocker-org/devcontainer-features/quarto-cli:latest": {}
+
+    // -------------------------------------------------------------------
+  },
+
+
+  // =====================================================================
+  //                       CUSTOMIZE DEV CONTAINER
+  // =====================================================================
+  "customizations": {
+    "vscode": {
+
+      "settings": {
+        "r.rterm.linux": "/usr/local/bin/radian",
+        "r.bracketedPaste": true, 
+        "r.plot.useHttpgd": true, 
+        "r.sessionWatcher": true
+      },
+
+      "extentions": [
+        "REditorSupport.r", 
+        "quarto.quarto", 
+        "ms-azuretools.vscode-docker",
+        "christian-kohler.path-intellisense", 
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-australian-english", 
+        "streetsidesoftware.code-spell-checker-scientific-terms",
+        "mechatroner.rainbow-csv", 
+        "AntiAntiSepticeye.vscode-color-picker", 
+        "zhuangtongfa.material-theme"
+      ]
+    }
+  }
+}
