@@ -1,6 +1,5 @@
-#!/bin/sh
-
 #######################################################################################################
+# FROM: https://github.com/deluan/zsh-in-docker
 # MIT License (MIT)
 # Copyright 2019 Deluan Quintao
 #

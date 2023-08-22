@@ -43,7 +43,7 @@
 
     // Install linux packages with apt
     "ghcr.io/rocker-org/devcontainer-features/apt-packages:latest": {
-      "packages": "git, curl, wget, zsh"
+      "packages": "git, curl, wget, zsh, sudo"
     },
 
     // Install pandoc
@@ -96,8 +96,7 @@
   },
 
   // Install oh-my-zsh (https://github.com/deluan/zsh-in-docker)
-  "remoteUser": "root",
-  "postCreateCommand": "sh -c '$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)' -- -x"
+  "postCreateCommand": "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)"
   
 
 }
