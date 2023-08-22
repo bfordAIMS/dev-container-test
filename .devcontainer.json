@@ -43,7 +43,7 @@
 
     // Install linux packages with apt
     "ghcr.io/rocker-org/devcontainer-features/apt-packages:latest": {
-      "packages": "curl"
+      "packages": "curl, zsh"
     },
 
     // Install pandoc
@@ -66,7 +66,17 @@
         "r.rterm.linux": "/usr/local/bin/radian",
         "r.bracketedPaste": true, 
         "r.plot.useHttpgd": true, 
-        "r.sessionWatcher": true
+        "r.sessionWatcher": true, 
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "terminal.integrated.profiles.linux": {
+          "bash": {
+            "path": "bash",
+            "icon": "terminal-bash"
+          },
+          "zsh": {
+            "path": "zsh"
+          }
+        }
       },
 
       "extentions": [
@@ -81,6 +91,12 @@
         "AntiAntiSepticeye.vscode-color-picker", 
         "zhuangtongfa.material-theme"
       ]
+      
     }
   }
+
+  // "postCreateCommand": [
+  //   "sh -c '$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'"
+  // ]
+
 }
