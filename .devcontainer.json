@@ -69,7 +69,6 @@
     },
     // Preserve shell history (incl. for zsh)
     "ghcr.io/stuartleeks/dev-container-features/shell-history:latest": {}
-
   
   },
 
@@ -116,7 +115,8 @@
   // =====================================================================
   //              SCRIPTS TO RUN AFTER CONTAINER IS CREATED
   // =====================================================================
-  //  Install p10k oh-my-zsh theme; download config files from my .dotfiles repo
+  // Install p10k oh-my-zsh theme
+  // Download config files from my .dotfiles repo
   "postCreateCommand": "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k && wget https://raw.githubusercontent.com/bfordAIMS/.dotfiles/main/.zshrc -O $HOME/.zshrc && wget https://raw.githubusercontent.com/bfordAIMS/.dotfiles/main/.p10k.zsh -O $HOME/.p10k.zsh"
   
   
