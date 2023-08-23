@@ -43,16 +43,34 @@
 
     // Install linux packages with apt
     "ghcr.io/rocker-org/devcontainer-features/apt-packages:latest": {
-      "packages": "git, curl, wget, zsh, sudo"
+      "packages": "git, curl, wget, sudo"
     },
 
     // Install pandoc
     "ghcr.io/rocker-org/devcontainer-features/pandoc:latest": {},
 
     // Install quarto
-    "ghcr.io/rocker-org/devcontainer-features/quarto-cli:latest": {}
+    "ghcr.io/rocker-org/devcontainer-features/quarto-cli:latest": {},
+
 
     // -------------------------------------------------------------------
+    //                          CLI FEATURES
+    // -------------------------------------------------------------------
+    // Command line utilities
+    "ghcr.io/devcontainers/features/common-utils:2": {
+      "installZsh": true, 
+      "configureZshAsDefaultShell": true,
+      "installOhMyZsh": true,
+      "upgradePackages": true
+    },
+    // ZSH plugins (downloaded here for simplicity; .zshrc is pulled from my .dotfiles repo in postCreateCommand)
+    "ghcr.io/devcontainers-contrib/features/zsh-plugins:latest": {
+      "omzPlugins": "https://github.com/zsh-users/zsh-autosuggestions.git https://github.com/zsh-users/zsh-syntax-highlighting.git"
+    },
+    // Preserve shell history (incl. for zsh)
+    "ghcr.io/stuartleeks/dev-container-features/shell-history:latest": {}
+
+  
   },
 
 
@@ -95,8 +113,12 @@
     }
   },
 
-  // Install oh-my-zsh (https://github.com/deluan/zsh-in-docker)
-  "postCreateCommand": "$(wget -O- https://github.com/deluan/zsh-in-docker/releases/download/v1.1.5/zsh-in-docker.sh)"
+  // =====================================================================
+  //              SCRIPTS TO RUN AFTER CONTAINER IS CREATED
+  // =====================================================================
+  //  Install p10k oh-my-zsh theme; download config files from my .dotfiles repo
+  "postCreateCommand": "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k && wget https://raw.githubusercontent.com/bfordAIMS/.dotfiles/main/.zshrc -O $HOME/.zshrc && wget https://raw.githubusercontent.com/bfordAIMS/.dotfiles/main/.p10k.zsh -O $HOME/.p10k.zsh"
+  
   
 
 }
